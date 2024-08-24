@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Detector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .device-info {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Device Detector</h1>
+    <p class="device-info">Detecting your device...</p>
+
+    <script>
+        function detectDevice() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            // Check for mobile devices
+            if (/android/i.test(userAgent)) {
+                return "Mobile (Android)";
+            }
+
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                return "Mobile (iOS)";
+            }
+
+            // Check for game consoles
+            if (/Xbox|PlayStation|Nintendo/.test(userAgent)) {
+                return "Console";
+            }
+
+            // Default to PC
+            return "PC";
+        }
+
+        // Display the detected device
+        const deviceType = detectDevice();
+        document.querySelector('.device-info').textContent = `You are using: ${deviceType}`;
+    </script>
+</body>
+</html>
